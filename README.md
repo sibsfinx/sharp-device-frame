@@ -5,8 +5,8 @@ Post-process PNG screenshots with Sharp and an SVG "browser chrome" overlay. Per
 ## Quick Start
 
 ```bash
-npm install
-npm run demo  # Takes screenshot of example.com and frames it automatically
+pnpm install
+pnpm run demo  # Takes screenshot of example.com and frames it automatically
 ```
 
 This creates:
@@ -32,29 +32,29 @@ screenshots/            # Output directory
 ### Automated Capture + Framing (Recommended)
 
 ```bash
-npm run capture  # Takes screenshot and frames it in one step
+pnpm run capture  # Takes screenshot and frames it in one step
 ```
 
 ### Manual Batch Processing
 
 1. Place your raw PNG screenshots in `screenshots/raw/`
-2. Run: `npm run frame`
+2. Run: `pnpm run frame`
 3. Find framed screenshots in `screenshots/framed/`
 
 ## Setup
 
 ```bash
-npm install
-npx playwright install chromium  # Install browser for Playwright
+pnpm install
+pnpm exec playwright install chromium  # Install browser for Playwright
 ```
 
 ## Scripts
 
-- `npm run build` - Compile TypeScript from `src/` to `dist/`
-- `npm run capture` - Take screenshot with Playwright and frame it
-- `npm run frame` - Frame existing screenshots in batch
-- `npm run demo` - Same as `capture` (convenience alias)
-- `npm run test` - Run test utilities
+- `pnpm run build` - Compile TypeScript from `src/` to `dist/`
+- `pnpm run capture` - Take screenshot with Playwright and frame it
+- `pnpm run frame` - Frame existing screenshots in batch
+- `pnpm run demo` - Same as `capture` (convenience alias)
+- `pnpm run test` - Run test utilities
 
 ## Features
 
@@ -86,7 +86,7 @@ Perfect for CI pipelines - single step process:
 
 ```yaml
 - name: Capture and frame screenshots
-  run: npm run capture
+  run: pnpm run capture
 
 - name: Upload artifacts
   uses: actions/upload-artifact@v3

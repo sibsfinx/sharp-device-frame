@@ -19,4 +19,4 @@ await sharp(testSvg)
   .toFile("screenshots/raw/test.png");
 
 console.log("Created test screenshot in screenshots/raw/test.png");
-console.log("Run 'npm run frame' to process it!");
+console.log("Run 'pnpm run frame' to process it!");
