@@ -5,8 +5,13 @@ Post-process PNG screenshots with Sharp and an SVG "browser chrome" overlay. Per
 ## Quick Start
 
 ```bash
-pnpm install
-pnpm run demo  # Takes screenshot of example.com and frames it automatically
+# Using Make (recommended)
+make install  # Install dependencies and Playwright browser
+make demo     # Takes screenshot of example.com and frames it automatically
+
+# Or using npm/pnpm
+npm install
+npm run demo  # Takes screenshot of example.com and frames it automatically
 ```
 
 This creates:
@@ -20,7 +25,7 @@ src/
 ├── take-screenshot.ts    # Integrated screenshot capture + framing
 ├── frame-screenshots.ts  # Batch framing of existing screenshots
 └── test.ts              # Test utilities
-browser-chrome.svg       # Browser chrome template (previewable)
+browser-frame.svg       # Browser chrome template (previewable)
 dist/                    # Compiled JavaScript
 screenshots/            # Output directory
 ├── raw/                # Raw screenshots
@@ -50,15 +55,29 @@ pnpm exec playwright install chromium  # Install browser for Playwright
 
 ## Scripts
 
-- `pnpm run build` - Compile TypeScript from `src/` to `dist/`
-- `pnpm run capture` - Take screenshot with Playwright and frame it
-- `pnpm run frame` - Frame existing screenshots in batch
-- `pnpm run demo` - Same as `capture` (convenience alias)
-- `pnpm run test` - Run test utilities
+### Using Make (recommended)
+```bash
+make all      # Build TypeScript (default)
+make build    # Compile TypeScript from `src/` to `dist/`
+make capture  # Take screenshot with Playwright and frame it
+make frame    # Frame existing screenshots in batch
+make demo     # Same as `capture` (convenience alias)
+make test     # Run test utilities
+make clean    # Remove build artifacts and screenshots
+make help     # Show all available targets
+```
+
+### Using npm/pnpm
+- `npm run build` - Compile TypeScript from `src/` to `dist/`
+- `npm run capture` - Take screenshot with Playwright and frame it
+- `npm run frame` - Frame existing screenshots in batch
+- `npm run demo` - Same as `capture` (convenience alias)
+- `npm run test` - Run test utilities
 
 ## Features
 
-- ✅ Adds macOS-style browser chrome (traffic light buttons + address bar)
+- ✅ **Detailed macOS browser frame** with realistic chrome, shadows, and UI elements
+- ✅ **Fully customizable SVG** - edit `browser-frame.svg` for different styles
 - ✅ Works with any PNG screenshot source
 - ✅ Pure Node.js pipeline - no HTML harness required
 - ✅ Output ready for documentation tools like Notion/Outline
@@ -67,18 +86,37 @@ pnpm exec playwright install chromium  # Install browser for Playwright
 
 ## Customization
 
-**Browser Chrome Design:**
-- Edit `browser-chrome.svg` to modify the chrome appearance
-- Preview the SVG file directly in your browser
-- Placeholders like `{{WIDTH}}` are automatically replaced at runtime
+**Browser Frame Design:**
+- Edit `browser-frame.svg` to modify the chrome appearance and styling
+- Preview the SVG file directly in your browser (currently set to 800×500)
+- The `{{PAGE_CONTENT}}` placeholder gets replaced with your screenshot at runtime
+- The SVG automatically resizes to fit your screenshots
+
+**Programmatic Customization:**
+The `frameScreenshot` function accepts optional parameters:
+
+```typescript
+import { frameScreenshot } from './src/take-screenshot';
+
+await frameScreenshot('input.png', 'output.png', {
+  width: 1920,        // Override screenshot width (default: auto-detect)
+  height: 1080,       // Override screenshot height (default: auto-detect)
+  pad: 40,            // Padding around content (default: 40px)
+  chromeH: 78,       // Browser bar height (default: 78px)
+});
+```
 
 **Layout Constants:**
-Edit the constants in `src/frame-screenshots.ts` or `src/take-screenshot.ts`:
-- `pad`: Padding around screenshot (default: 24px)
-- `chromeH`: Browser bar height (default: 44px)
-- `radius`: Corner radius (default: 16px)
+Default values in `src/take-screenshot.ts`:
+- `pad`: Padding around screenshot (default: 40px, matches SVG template)
+- `chromeH`: Browser bar height (default: 78px, matches SVG template)
 
-Colors are hardcoded for a clean macOS look but can be modified in the SVG file.
+**Advanced Customization:**
+For different frame styles, you can:
+1. Edit the SVG directly with any vector graphics editor
+2. Replace `browser-frame.svg` with your own design
+3. Modify colors, add/remove UI elements, change the overall style
+4. Pass custom dimensions and padding via the options parameter
 
 ## CI Integration
 

@@ -6,10 +6,10 @@
   "main": "frame-screenshots.js",
   "scripts": {
     "build": "tsc",
-    "frame": "pnpm run build && node dist/frame-screenshots.js",
-    "test": "pnpm run build && node dist/test.js",
-    "capture": "pnpm run build && node dist/take-screenshot.js",
-    "demo": "pnpm run capture"
+    "frame": "npm run build && node dist/frame-screenshots.js",
+    "test": "npm run build && node dist/test.js",
+    "capture": "npm run build && node dist/take-screenshot.js",
+    "demo": "npm run capture"
   },
   "dependencies": {
     "sharp": "^0.32.6",
