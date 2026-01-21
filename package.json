@@ -1,0 +1,25 @@
+{
+  "name": "sharp-browser-frame",
+  "version": "1.0.0",
+  "description": "Post-process PNG screenshots with Sharp and SVG browser chrome overlay",
+  "type": "module",
+  "main": "frame-screenshots.js",
+  "scripts": {
+    "build": "tsc",
+    "frame": "npm run build && node dist/frame-screenshots.js",
+    "test": "npm run build && node dist/test.js",
+    "capture": "npm run build && node dist/take-screenshot.js",
+    "demo": "npm run capture"
+  },
+  "dependencies": {
+    "sharp": "^0.32.6",
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

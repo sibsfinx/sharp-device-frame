@@ -1,0 +1,7 @@
+<svg width="{{WIDTH}}" height="{{CHROME_HEIGHT}}" xmlns="http://www.w3.org/2000/svg">
+  <rect width="{{WIDTH}}" height="{{CHROME_HEIGHT}}" rx="{{RADIUS}}" fill="#EEF0F3"/>
+  <circle cx="20" cy="{{CHROME_CENTER}}" r="6" fill="#FF5F57"/>
+  <circle cx="40" cy="{{CHROME_CENTER}}" r="6" fill="#FEBC2E"/>
+  <circle cx="60" cy="{{CHROME_CENTER}}" r="6" fill="#28C840"/>
+  <rect x="84" y="{{ADDRESS_BAR_Y}}" width="{{ADDRESS_BAR_WIDTH}}" height="16" rx="8" fill="#D7DCE3"/>
+</svg>
